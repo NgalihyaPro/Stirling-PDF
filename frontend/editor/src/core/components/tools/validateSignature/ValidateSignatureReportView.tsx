@@ -163,7 +163,7 @@ const ValidateSignatureReportView: React.FC<
               <Text size="xs" c="dimmed">
                 {t(
                   "validateSignature.report.footer",
-                  "Validated via Stirling PDF",
+                  "Validated via Ngalihya PDF",
                 )}
               </Text>
               <Text size="xs" c="dimmed">
