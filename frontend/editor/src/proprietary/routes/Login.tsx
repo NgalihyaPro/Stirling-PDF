@@ -593,7 +593,7 @@ export default function Login() {
         layout="vertical"
         enabledProviders={enabledProviders}
         ctaPrefix={
-          isSsoOnlyMode ? t("login.signInWith", "Sign in with") : undefined
+          isSsoOnlyMode ? t("login.continueWith", "Continue with") : undefined
         }
         styleVariant="light"
         useNewStyle={isSsoOnlyMode}
