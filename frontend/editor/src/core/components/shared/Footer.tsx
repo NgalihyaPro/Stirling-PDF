@@ -1,6 +1,5 @@
 import { Flex } from "@mantine/core";
 import { useTranslation } from "react-i18next";
-import { useCookieConsent } from "@app/hooks/useCookieConsent";
 
 interface FooterProps {
   privacyPolicy?: string;
@@ -23,17 +22,12 @@ export default function Footer({
 }: FooterProps) {
   const { t } = useTranslation();
 
-  const finalAnalyticsEnabled = analyticsEnabled ?? false;
+  void analyticsEnabled;
   void privacyPolicy;
   void termsAndConditions;
-  const finalAccessibilityStatement = accessibilityStatement;
-  const finalCookiePolicy = cookiePolicy;
-  const finalImpressum = impressum;
-
-  const { showCookiePreferences } = useCookieConsent({
-    analyticsEnabled: finalAnalyticsEnabled,
-    forceLightMode,
-  });
+  void accessibilityStatement;
+  void cookiePolicy;
+  void impressum;
 
   // Default Ngalihya PDF public legal pages.
   const defaultTermsUrl = "https://ngalihyapdf.com/terms";
@@ -41,9 +35,6 @@ export default function Footer({
 
   const finalTermsUrl = defaultTermsUrl;
   const finalPrivacyUrl = defaultPrivacyUrl;
-
-  // Helper to check if a value is valid (not null/undefined/empty string)
-  const isValidLink = (link?: string) => link && link.trim().length > 0;
 
   return (
     <div
@@ -86,45 +77,6 @@ export default function Footer({
         >
           {t("legal.terms", "Terms and Conditions")}
         </a>
-        {isValidLink(finalAccessibilityStatement) && (
-          <a
-            className="footer-link px-3"
-            target="_blank"
-            rel="noopener noreferrer"
-            href={finalAccessibilityStatement}
-          >
-            {t("legal.accessibility", "Accessibility")}
-          </a>
-        )}
-        {isValidLink(finalCookiePolicy) && (
-          <a
-            className="footer-link px-3"
-            target="_blank"
-            rel="noopener noreferrer"
-            href={finalCookiePolicy}
-          >
-            {t("legal.cookie", "Cookie Policy")}
-          </a>
-        )}
-        {isValidLink(finalImpressum) && (
-          <a
-            className="footer-link px-3"
-            target="_blank"
-            rel="noopener noreferrer"
-            href={finalImpressum}
-          >
-            {t("legal.impressum", "Impressum")}
-          </a>
-        )}
-        {finalAnalyticsEnabled && (
-          <button
-            className="footer-link px-3"
-            id="cookieBanner"
-            onClick={showCookiePreferences}
-          >
-            {t("legal.showCookieBanner", "Cookie Preferences")}
-          </button>
-        )}
       </Flex>
     </div>
   );
