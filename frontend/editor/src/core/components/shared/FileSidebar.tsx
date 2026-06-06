@@ -10,7 +10,6 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useFileState, useFileActions } from "@app/contexts/file/fileHooks";
 import { useAppConfig } from "@app/contexts/AppConfigContext";
-import { useGoogleDrivePicker } from "@app/hooks/useGoogleDrivePicker";
 import {
   useNavigationState,
   useNavigationActions,
@@ -24,7 +23,6 @@ import {
   useIndexedDBRevision,
 } from "@app/contexts/IndexedDBContext";
 import { accountService } from "@app/services/accountService";
-import { GoogleDriveIcon } from "@app/components/shared/CloudStorageIcons";
 import { Wordmark } from "@app/components/shared/Wordmark";
 import type { StirlingFileStub } from "@app/types/fileContext";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -52,8 +50,6 @@ export interface FileSidebarProps {
   toggleIcon?: React.ReactNode;
   /** Override the Open-from-computer handler (e.g. upload to /files folder). */
   onUploadFiles?: (files: File[]) => void | Promise<void>;
-  /** Override the Google Drive handler. */
-  onPickGoogleDriveFiles?: (files: File[]) => void | Promise<void>;
   /** Override the Search row click (e.g. focus the /files search input). */
   onSearchClick?: () => void;
   /** Extra action row inserted under Open-from-computer (e.g. New folder). */
@@ -76,7 +72,6 @@ const FileSidebar = forwardRef<HTMLDivElement, FileSidebarProps>(
       toggleAriaLabel,
       toggleIcon,
       onUploadFiles,
-      onPickGoogleDriveFiles,
       onSearchClick,
       extraAction,
     },
@@ -94,10 +89,6 @@ const FileSidebar = forwardRef<HTMLDivElement, FileSidebarProps>(
 
     const navigate = useNavigate();
     const { config } = useAppConfig();
-    const {
-      isEnabled: isGoogleDriveEnabled,
-      openPicker: openGoogleDrivePicker,
-    } = useGoogleDrivePicker();
     const { state } = useFileState();
     const { actions: fileActions } = useFileActions();
     const { actions: navActions } = useNavigationActions();
@@ -213,28 +204,6 @@ const FileSidebar = forwardRef<HTMLDivElement, FileSidebarProps>(
         searchInputRef.current.focus();
       }
     }, [searchActive]);
-
-    // Handle Google Drive
-    const handleGoogleDriveClick = useCallback(async () => {
-      if (!isGoogleDriveEnabled) return;
-      const files = await openGoogleDrivePicker({ multiple: true });
-      if (files.length === 0) return;
-      if (onPickGoogleDriveFiles) {
-        await onPickGoogleDriveFiles(files);
-        return;
-      }
-      await addFiles(files);
-      if (!isMultiTool) {
-        navActions.setWorkbench(files.length === 1 ? "viewer" : "fileEditor");
-      }
-    }, [
-      isGoogleDriveEnabled,
-      openGoogleDrivePicker,
-      addFiles,
-      navActions,
-      isMultiTool,
-      onPickGoogleDriveFiles,
-    ]);
 
     // Toggle file in/out of workbench
     const handleFileClick = useCallback(
@@ -373,9 +342,6 @@ const FileSidebar = forwardRef<HTMLDivElement, FileSidebarProps>(
       [addFiles, navActions, isMultiTool, onUploadFiles],
     );
 
-    const shouldHideGoogleDrive =
-      !isGoogleDriveEnabled && config?.hideDisabledToolsGoogleDrive;
-
     const width = collapsed ? COLLAPSED_WIDTH : EXPANDED_WIDTH;
 
     return (
@@ -495,7 +461,7 @@ const FileSidebar = forwardRef<HTMLDivElement, FileSidebarProps>(
               onChange={handleNativeFilePick}
               data-testid="file-input"
             />
-            {/* Open from Computer + My Files + Google Drive */}
+            {/* Open from Computer + My Files */}
             {/* Tooltips only fire when collapsed - when expanded the visible
                 text label below already identifies each row, so a tooltip
                 would just flash a duplicate. Distinct icons (UploadFile for
@@ -517,7 +483,7 @@ const FileSidebar = forwardRef<HTMLDivElement, FileSidebarProps>(
                 data-tour="files-button"
                 onClick={() => {
                   // "Open from computer" goes straight to the native OS file
-                  // picker. The full file manager (recent + drives + folders)
+                  // picker. The full file manager (recent + folders)
                   // is reachable via "My Files" below.
                   nativeFileInputRef.current?.click();
                 }}
@@ -625,56 +591,6 @@ const FileSidebar = forwardRef<HTMLDivElement, FileSidebarProps>(
                 )}
               </div>
             </Tooltip>
-
-            {!shouldHideGoogleDrive && (
-              <Tooltip
-                label={
-                  !isGoogleDriveEnabled
-                    ? t(
-                        "fileSidebar.googleDriveDisabled",
-                        "Google Drive is not configured",
-                      )
-                    : t("fileSidebar.googleDrive", "Open from Google Drive")
-                }
-                position="right"
-                withinPortal
-                disabled={!collapsed}
-              >
-                <div
-                  className={`file-sidebar-cloud-row${!isGoogleDriveEnabled ? " disabled" : ""}`}
-                  onClick={handleGoogleDriveClick}
-                  role="button"
-                  tabIndex={isGoogleDriveEnabled ? 0 : -1}
-                  aria-disabled={!isGoogleDriveEnabled}
-                  aria-label={
-                    !isGoogleDriveEnabled
-                      ? t(
-                          "fileSidebar.googleDriveDisabled",
-                          "Google Drive is not configured",
-                        )
-                      : t("fileSidebar.googleDrive", "Open from Google Drive")
-                  }
-                >
-                  <div className="file-sidebar-cloud-icon-wrapper">
-                    <GoogleDriveIcon
-                      className="file-sidebar-cloud-icon-gray"
-                      style={{ color: "var(--text-secondary)" }}
-                    />
-                    {isGoogleDriveEnabled && (
-                      <GoogleDriveIcon
-                        colored
-                        className="file-sidebar-cloud-icon-color"
-                      />
-                    )}
-                  </div>
-                  {!collapsed && (
-                    <span className="file-sidebar-action-label sidebar-content-fade">
-                      {t("fileSidebar.googleDrive", "Google Drive")}
-                    </span>
-                  )}
-                </div>
-              </Tooltip>
-            )}
 
             {/* Files section - always visible when expanded */}
             {!collapsed && (

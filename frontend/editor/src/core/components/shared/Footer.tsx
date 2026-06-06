@@ -1,7 +1,6 @@
 import { Flex } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { useCookieConsent } from "@app/hooks/useCookieConsent";
-import { useFooterInfo } from "@app/hooks/useFooterInfo";
 
 interface FooterProps {
   privacyPolicy?: string;
@@ -23,31 +22,25 @@ export default function Footer({
   forceLightMode = false,
 }: FooterProps) {
   const { t } = useTranslation();
-  const { footerInfo } = useFooterInfo();
 
-  // Use props if provided, otherwise fall back to fetched footer info
-  const finalAnalyticsEnabled =
-    analyticsEnabled ?? footerInfo?.analyticsEnabled ?? false;
-  const finalPrivacyPolicy = privacyPolicy ?? footerInfo?.privacyPolicy;
-  const finalTermsAndConditions =
-    termsAndConditions ?? footerInfo?.termsAndConditions;
-  const finalAccessibilityStatement =
-    accessibilityStatement ?? footerInfo?.accessibilityStatement;
-  const finalCookiePolicy = cookiePolicy ?? footerInfo?.cookiePolicy;
-  const finalImpressum = impressum ?? footerInfo?.impressum;
+  const finalAnalyticsEnabled = analyticsEnabled ?? false;
+  void privacyPolicy;
+  void termsAndConditions;
+  const finalAccessibilityStatement = accessibilityStatement;
+  const finalCookiePolicy = cookiePolicy;
+  const finalImpressum = impressum;
 
   const { showCookiePreferences } = useCookieConsent({
     analyticsEnabled: finalAnalyticsEnabled,
     forceLightMode,
   });
 
-  // Default URLs
-  const defaultTermsUrl = "https://www.stirling.com/terms";
-  const defaultPrivacyUrl = "https://www.stirling.com/privacy";
+  // Default Ngalihya PDF public legal pages.
+  const defaultTermsUrl = "https://ngalihyapdf.com/terms";
+  const defaultPrivacyUrl = "https://ngalihyapdf.com/privacy";
 
-  // Use provided URLs or fall back to defaults
-  const finalTermsUrl = finalTermsAndConditions || defaultTermsUrl;
-  const finalPrivacyUrl = finalPrivacyPolicy || defaultPrivacyUrl;
+  const finalTermsUrl = defaultTermsUrl;
+  const finalPrivacyUrl = defaultPrivacyUrl;
 
   // Helper to check if a value is valid (not null/undefined/empty string)
   const isValidLink = (link?: string) => link && link.trim().length > 0;
@@ -79,15 +72,6 @@ export default function Footer({
       >
         <a
           className="footer-link px-3"
-          id="survey"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://stirlingpdf.info/s/cm28y3niq000o56dv7liv8wsu"
-        >
-          {t("survey.nav", "Survey")}
-        </a>
-        <a
-          className="footer-link px-3"
           target="_blank"
           rel="noopener noreferrer"
           href={finalPrivacyUrl}
@@ -101,22 +85,6 @@ export default function Footer({
           href={finalTermsUrl}
         >
           {t("legal.terms", "Terms and Conditions")}
-        </a>
-        <a
-          className="footer-link px-3"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://discord.gg/Cn8pWhQRxZ"
-        >
-          {t("footer.discord", "Discord")}
-        </a>
-        <a
-          className="footer-link px-3"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/Stirling-Tools/Stirling-PDF"
-        >
-          {t("footer.issues", "GitHub")}
         </a>
         {isValidLink(finalAccessibilityStatement) && (
           <a
