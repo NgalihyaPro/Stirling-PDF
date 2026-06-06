@@ -299,10 +299,7 @@ export default function HomePage() {
               <div className="mobile-toggle">
                 <div className="mobile-header">
                   <div className="mobile-brand">
-                    <NgalihyaBrand
-                      iconClassName="mobile-brand-icon"
-                      textClassName="mobile-brand-text"
-                    />
+                    <NgalihyaBrand className="mobile-brand-text" />
                   </div>
                 </div>
                 <div

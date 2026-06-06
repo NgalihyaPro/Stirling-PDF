@@ -366,16 +366,9 @@
 }
 
 .addFileBrand {
+  height: 3rem;
+  width: auto;
   margin-bottom: 0.2rem;
-}
-
-.addFileBrand :global(.ngalihya-brand__icon) {
-  width: 2.8rem;
-  height: 2.8rem;
-}
-
-.addFileBrand :global(.ngalihya-brand__text) {
-  font-size: 1.1rem;
 }
 
 .addFileIcon {

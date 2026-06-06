@@ -1,29 +1,8 @@
 .ngalihya-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  color: var(--text-primary, #141820);
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.ngalihya-brand__icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  flex: 0 0 auto;
+  display: inline-block;
+  height: 2.75rem;
+  width: auto;
+  max-width: 100%;
   object-fit: contain;
-}
-
-.ngalihya-brand__text {
-  font-size: 1rem;
-  font-weight: 900;
-  letter-spacing: 0;
-}
-
-.ngalihya-brand__text strong {
-  color: #ef1f2d;
-}
-
-[data-mantine-color-scheme="dark"] .ngalihya-brand {
-  color: #ffffff;
+  vertical-align: middle;
 }

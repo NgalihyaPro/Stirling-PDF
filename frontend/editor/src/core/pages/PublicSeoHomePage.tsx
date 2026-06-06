@@ -134,10 +134,7 @@ export default function PublicSeoHomePage() {
     <main className="public-home">
       <header className="public-home__nav">
         <Link to="/" className="public-home__brand" aria-label="Ngalihya PDF home">
-          <NgalihyaBrand
-            iconClassName="public-home__brand-icon"
-            textClassName="public-home__brand-text"
-          />
+          <NgalihyaBrand className="public-home__brand-logo" />
         </Link>
         <nav className="public-home__links" aria-label="Primary tools">
           <a href="#tools" onClick={(event) => scrollToSection(event, "tools")}>
@@ -264,10 +261,7 @@ export default function PublicSeoHomePage() {
       <footer id="contact" className="public-home__footer">
         <div className="public-home__footer-brand">
           <div className="public-home__brand public-home__brand--footer">
-            <NgalihyaBrand
-              iconClassName="public-home__brand-icon"
-              textClassName="public-home__brand-text"
-            />
+            <NgalihyaBrand className="public-home__brand-logo" />
           </div>
           <p>
             Free online PDF tools for converting, compressing, editing,

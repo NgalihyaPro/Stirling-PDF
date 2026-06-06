@@ -40,22 +40,9 @@ body.public-home-page #root {
   text-decoration: none;
 }
 
-.public-home__brand-icon {
-  width: 3.3rem;
-  height: 3.3rem;
-  flex: 0 0 auto;
-}
-
-.public-home__brand-text {
-  color: #141820;
-  font-size: 1.35rem;
-  font-weight: 900;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.public-home__brand-text strong {
-  color: #ef1f2d;
+.public-home__brand-logo {
+  height: 3.4rem;
+  max-width: 15rem;
 }
 
 .public-home__links {
@@ -349,8 +336,8 @@ body.public-home-page #root {
   justify-content: flex-start;
 }
 
-.public-home__brand--footer .public-home__brand-text {
-  color: #ffffff;
+.public-home__brand--footer .public-home__brand-logo {
+  height: 3.4rem;
 }
 
 .public-home__footer-column {
@@ -431,13 +418,9 @@ body.public-home-page #root {
     width: min(100% - 1.25rem, 76rem);
   }
 
-  .public-home__brand-icon {
-    width: 2.75rem;
-    height: 2.75rem;
-  }
-
-  .public-home__brand-text {
-    font-size: 1.1rem;
+  .public-home__brand-logo {
+    height: 2.9rem;
+    max-width: 12rem;
   }
 
   .public-home h1 {
