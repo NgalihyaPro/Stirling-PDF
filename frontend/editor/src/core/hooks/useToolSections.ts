@@ -45,13 +45,22 @@ export function useToolSections(
 ) {
   const { t } = useTranslation();
 
+  const publicTools = useMemo(
+    () =>
+      filteredTools.filter(
+        ({ item: [, tool] }) =>
+          tool.subcategoryId !== SubcategoryId.DEVELOPER_TOOLS,
+      ),
+    [filteredTools],
+  );
+
   const groupedTools = useMemo(() => {
-    if (!filteredTools || !Array.isArray(filteredTools)) {
+    if (!publicTools || !Array.isArray(publicTools)) {
       return {} as GroupedTools;
     }
 
     const grouped = {} as GroupedTools;
-    filteredTools.forEach(({ item: [id, tool] }) => {
+    publicTools.forEach(({ item: [id, tool] }) => {
       const categoryId = tool.categoryId;
       const subcategoryId = tool.subcategoryId;
       if (!grouped[categoryId]) grouped[categoryId] = {} as SubcategoryIdMap;
@@ -60,7 +69,7 @@ export function useToolSections(
       grouped[categoryId][subcategoryId].push({ id, tool });
     });
     return grouped;
-  }, [filteredTools]);
+  }, [publicTools]);
 
   const sections: ToolSection[] = useMemo(() => {
     const getOrderIndex = (id: SubcategoryId) => {
@@ -136,13 +145,13 @@ export function useToolSections(
   }, [groupedTools]);
 
   const searchGroups: SubcategoryGroup[] = useMemo(() => {
-    if (!filteredTools || !Array.isArray(filteredTools)) {
+    if (!publicTools || !Array.isArray(publicTools)) {
       return [];
     }
 
     const subMap = {} as SubcategoryIdMap;
     const seen = new Set<ToolId>();
-    filteredTools.forEach(({ item: [id, tool] }) => {
+    publicTools.forEach(({ item: [id, tool] }) => {
       const toolId = id as ToolId;
       if (seen.has(toolId)) return;
       seen.add(toolId);
@@ -156,7 +165,7 @@ export function useToolSections(
     // the ranked filteredTools list so the top-ranked tools' subcategory appears first.
     if (searchQuery && searchQuery.trim()) {
       const order: SubcategoryId[] = [];
-      filteredTools.forEach(({ item: [_, tool] }) => {
+      publicTools.forEach(({ item: [_, tool] }) => {
         const sc = tool.subcategoryId;
         if (!order.includes(sc)) order.push(sc);
       });
@@ -180,7 +189,7 @@ export function useToolSections(
         ([subcategoryId, tools]) =>
           ({ subcategoryId, tools }) as SubcategoryGroup,
       );
-  }, [filteredTools, searchQuery]);
+  }, [publicTools, searchQuery]);
 
   return { sections, searchGroups };
 }
