@@ -61,11 +61,17 @@
 }
 
 .file-sidebar-brand-text {
-  height: 40px;
-  max-width: 178px;
-  width: auto;
+  max-width: 188px;
   flex-shrink: 0;
-  object-fit: contain;
+}
+
+.file-sidebar-brand-text .ngalihya-brand__icon {
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+.file-sidebar-brand-text .ngalihya-brand__text {
+  font-size: 1.05rem;
 }
 
 /* ---- Search row ---- */

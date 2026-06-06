@@ -1,4 +1,4 @@
-import { Wordmark } from "@app/components/shared/Wordmark";
+import { NgalihyaBrand } from "@app/components/shared/NgalihyaBrand";
 
 interface LoginHeaderProps {
   title: string;
@@ -16,7 +16,7 @@ export default function LoginHeader({
       className={`login-header${centerOnly ? " login-header-centered" : ""}`}
     >
       <div className="login-header-logos">
-        <Wordmark alt="Ngalihya PDF" className="login-logo-text" />
+        <NgalihyaBrand className="login-logo-text" />
       </div>
       {title && <h1 className="login-title">{title}</h1>}
       {subtitle && <p className="login-subtitle">{subtitle}</p>}

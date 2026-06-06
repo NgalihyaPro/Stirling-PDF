@@ -461,7 +461,7 @@
 }
 
 .login-header-centered .login-logo-text {
-  height: 2.5rem; /* 40px */
+  justify-content: center;
 }
 
 .login-header-logos {
@@ -478,7 +478,16 @@
 }
 
 .login-logo-text {
-  height: 2rem; /* 32px - increased from 24px */
+  justify-content: flex-start;
+}
+
+.login-logo-text .ngalihya-brand__icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.login-logo-text .ngalihya-brand__text {
+  font-size: 1.35rem;
 }
 
 .login-title {

@@ -12,8 +12,7 @@ import {
   Card,
 } from "@mantine/core";
 import { useTranslation } from "react-i18next";
-import { LogoIcon } from "@app/components/shared/LogoIcon";
-import { Wordmark } from "@app/components/shared/Wordmark";
+import { NgalihyaBrand } from "@app/components/shared/NgalihyaBrand";
 import ErrorRoundedIcon from "@mui/icons-material/ErrorRounded";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import PhotoCameraRoundedIcon from "@mui/icons-material/PhotoCameraRounded";
@@ -979,11 +978,7 @@ export default function MobileScannerPage() {
         }}
       >
         <Group gap="sm" align="center">
-          <LogoIcon
-            alt={t("home.mobile.brandAlt", "Ngalihya PDF logo")}
-            style={{ height: "32px", width: "32px" }}
-          />
-          <Wordmark alt="Ngalihya PDF" style={{ height: "24px" }} />
+          <NgalihyaBrand />
         </Group>
       </Box>
 

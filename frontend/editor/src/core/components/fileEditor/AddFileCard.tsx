@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
-import { Button, Group } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { useFilesModalContext } from "@app/contexts/FilesModalContext";
 import LocalIcon from "@app/components/shared/LocalIcon";
-import { Wordmark } from "@app/components/shared/Wordmark";
+import { NgalihyaBrand } from "@app/components/shared/NgalihyaBrand";
 import styles from "@app/components/fileEditor/FileEditor.module.css";
 import { useFileActionTerminology } from "@app/hooks/useFileActionTerminology";
 import { useFileActionIcons } from "@app/hooks/useFileActionIcons";
@@ -83,13 +83,7 @@ const AddFileCard = ({
         {/* Main content area */}
         <div className={styles.addFileContent}>
           {/* Ngalihya PDF Branding */}
-          <Group gap="xs" align="center">
-            <Wordmark
-              alt="Ngalihya PDF"
-              muted
-              style={{ height: "2.2rem", width: "auto" }}
-            />
-          </Group>
+          <NgalihyaBrand className={styles.addFileBrand} />
 
           {/* Add Files + Native Upload Buttons - styled like LandingPage */}
           <div

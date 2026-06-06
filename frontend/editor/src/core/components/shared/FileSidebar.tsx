@@ -23,7 +23,7 @@ import {
   useIndexedDBRevision,
 } from "@app/contexts/IndexedDBContext";
 import { accountService } from "@app/services/accountService";
-import { Wordmark } from "@app/components/shared/Wordmark";
+import { NgalihyaBrand } from "@app/components/shared/NgalihyaBrand";
 import type { StirlingFileStub } from "@app/types/fileContext";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
@@ -387,10 +387,7 @@ const FileSidebar = forwardRef<HTMLDivElement, FileSidebarProps>(
                 {toggleIcon ?? <MenuIcon />}
               </span>
               {!collapsed && (
-                <Wordmark
-                  alt="Ngalihya PDF"
-                  className="file-sidebar-brand-text sidebar-content-fade"
-                />
+                <NgalihyaBrand className="file-sidebar-brand-text sidebar-content-fade" />
               )}
             </div>
           </Tooltip>

@@ -5,8 +5,7 @@ import { Group } from "@mantine/core";
 import { useSidebarContext } from "@app/contexts/SidebarContext";
 import { useDocumentMeta } from "@app/hooks/useDocumentMeta";
 import { useIsMobile } from "@app/hooks/useIsMobile";
-import { LogoIcon } from "@app/components/shared/LogoIcon";
-import { Wordmark } from "@app/components/shared/Wordmark";
+import { NgalihyaBrand } from "@app/components/shared/NgalihyaBrand";
 import { getSeoMetadata } from "@app/components/seo/SeoManager";
 import { useFileContext } from "@app/contexts/file/fileHooks";
 import {
@@ -180,8 +179,6 @@ export default function HomePage() {
     )?.hideToolPanel ??
       false);
 
-  const brandAltText = t("home.mobile.brandAlt", "Ngalihya PDF logo");
-
   const handleSelectMobileView = useCallback((view: MobileView) => {
     setActiveMobileView(view);
   }, []);
@@ -302,10 +299,9 @@ export default function HomePage() {
               <div className="mobile-toggle">
                 <div className="mobile-header">
                   <div className="mobile-brand">
-                    <LogoIcon className="mobile-brand-icon" />
-                    <Wordmark
-                      alt={brandAltText}
-                      className="mobile-brand-text"
+                    <NgalihyaBrand
+                      iconClassName="mobile-brand-icon"
+                      textClassName="mobile-brand-text"
                     />
                   </div>
                 </div>

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Button, Group, Text, Stack } from "@mantine/core";
+import { Button, Text, Stack } from "@mantine/core";
 import HistoryIcon from "@mui/icons-material/History";
 import { useTranslation } from "react-i18next";
 import { useFileManagerContext } from "@app/contexts/FileManagerContext";
 import LocalIcon from "@app/components/shared/LocalIcon";
-import { Wordmark } from "@app/components/shared/Wordmark";
+import { NgalihyaBrand } from "@app/components/shared/NgalihyaBrand";
 import { useFileActionTerminology } from "@app/hooks/useFileActionTerminology";
 import { useFileActionIcons } from "@app/hooks/useFileActionIcons";
 
@@ -56,13 +56,7 @@ const EmptyFilesState: React.FC = () => {
         </Stack>
 
         {/* Ngalihya PDF Logo */}
-        <Group gap="xs" align="center">
-          <Wordmark
-            alt="Ngalihya PDF"
-            muted
-            style={{ height: "2.2rem", width: "auto" }}
-          />
-        </Group>
+        <NgalihyaBrand />
 
         {/* Upload Button */}
         <div

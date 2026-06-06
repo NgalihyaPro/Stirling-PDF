@@ -5,11 +5,18 @@
 
 /* ── Hero text ───────────────────────────────────────────── */
 .landing-title {
-  display: block;
+  display: inline-flex;
   margin: 1.75rem auto 0.5rem;
-  height: 3rem;
-  width: auto;
   max-width: 100%;
+}
+
+.landing-title .ngalihya-brand__icon {
+  width: 3.4rem;
+  height: 3.4rem;
+}
+
+.landing-title .ngalihya-brand__text {
+  font-size: 1.8rem;
 }
 
 .landing-subtitle {

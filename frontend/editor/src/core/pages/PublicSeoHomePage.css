@@ -1,8 +1,12 @@
-.public-home-page,
-.public-home-page #root {
+html.public-home-page,
+html.public-home-page body,
+html.public-home-page #root,
+body.public-home-page,
+body.public-home-page #root {
   height: auto !important;
   min-height: 100vh;
   overflow-y: auto !important;
+  overflow-x: hidden;
 }
 
 .public-home {

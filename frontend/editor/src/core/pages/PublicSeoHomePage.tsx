@@ -5,7 +5,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import LockIcon from "@mui/icons-material/Lock";
 import SecurityIcon from "@mui/icons-material/Security";
 import BoltIcon from "@mui/icons-material/Bolt";
-import { LogoIcon } from "@app/components/shared/LogoIcon";
+import { NgalihyaBrand } from "@app/components/shared/NgalihyaBrand";
 import "@app/pages/PublicSeoHomePage.css";
 
 const featuredTools = [
@@ -111,8 +111,12 @@ const faqs = [
 
 export default function PublicSeoHomePage() {
   useEffect(() => {
+    document.documentElement.classList.add("public-home-page");
     document.body.classList.add("public-home-page");
-    return () => document.body.classList.remove("public-home-page");
+    return () => {
+      document.documentElement.classList.remove("public-home-page");
+      document.body.classList.remove("public-home-page");
+    };
   }, []);
 
   const scrollToSection = (
@@ -130,10 +134,10 @@ export default function PublicSeoHomePage() {
     <main className="public-home">
       <header className="public-home__nav">
         <Link to="/" className="public-home__brand" aria-label="Ngalihya PDF home">
-          <LogoIcon className="public-home__brand-icon" />
-          <span className="public-home__brand-text">
-            Ngalihya <strong>PDF</strong>
-          </span>
+          <NgalihyaBrand
+            iconClassName="public-home__brand-icon"
+            textClassName="public-home__brand-text"
+          />
         </Link>
         <nav className="public-home__links" aria-label="Primary tools">
           <a href="#tools" onClick={(event) => scrollToSection(event, "tools")}>
@@ -260,10 +264,10 @@ export default function PublicSeoHomePage() {
       <footer id="contact" className="public-home__footer">
         <div className="public-home__footer-brand">
           <div className="public-home__brand public-home__brand--footer">
-            <LogoIcon className="public-home__brand-icon" />
-            <span className="public-home__brand-text">
-              Ngalihya <strong>PDF</strong>
-            </span>
+            <NgalihyaBrand
+              iconClassName="public-home__brand-icon"
+              textClassName="public-home__brand-text"
+            />
           </div>
           <p>
             Free online PDF tools for converting, compressing, editing,
