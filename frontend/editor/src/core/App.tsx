@@ -7,6 +7,7 @@ import { LoadingFallback } from "@app/components/shared/LoadingFallback";
 import { RainbowThemeProvider } from "@app/components/shared/RainbowThemeProvider";
 import { PreferencesProvider } from "@app/contexts/PreferencesContext";
 import HomePage from "@app/pages/HomePage";
+import PublicSeoHomePage from "@app/pages/PublicSeoHomePage";
 import MobileScannerPage from "@app/pages/MobileScannerPage";
 import { PrivacyPolicyPage, TermsPage } from "@app/pages/LegalPage";
 import Onboarding from "@app/components/onboarding/Onboarding";
@@ -47,6 +48,17 @@ export default function App() {
         <Route path="/terms" element={<TermsPage />} />
 
         {/* All other routes need AppProviders for backend integration */}
+        <Route
+          path="/"
+          element={
+            <AppProviders>
+              <AppLayout>
+                <PublicSeoHomePage />
+              </AppLayout>
+            </AppProviders>
+          }
+        />
+
         <Route
           path="*"
           element={

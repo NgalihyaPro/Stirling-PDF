@@ -1,11 +1,12 @@
 import { Suspense } from "react";
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route, useLocation, useParams } from "react-router-dom";
 import { AppProviders } from "@app/components/AppProviders";
 import { AppLayout } from "@app/components/AppLayout";
 import SeoManager from "@app/components/seo/SeoManager";
 import { LoadingFallback } from "@app/components/shared/LoadingFallback";
 import { PreferencesProvider } from "@app/contexts/PreferencesContext";
 import { RainbowThemeProvider } from "@app/components/shared/RainbowThemeProvider";
+import PublicSeoHomePage from "@app/pages/PublicSeoHomePage";
 import Landing from "@app/routes/Landing";
 import Login from "@app/routes/Login";
 import Signup from "@app/routes/Signup";
@@ -43,6 +44,9 @@ function ParticipantViewPage() {
 }
 
 export default function App() {
+  const location = useLocation();
+  const isPublicHome = location.pathname === "/";
+
   return (
     <Suspense fallback={<LoadingFallback />}>
       <SeoManager />
@@ -77,6 +81,7 @@ export default function App() {
             <AppProviders>
               <AppLayout>
                 <Routes>
+                  <Route path="/" element={<PublicSeoHomePage />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/signup" element={<Signup />} />
                   <Route path="/auth/callback" element={<AuthCallback />} />
@@ -85,7 +90,7 @@ export default function App() {
                   {/* Main app routes - Landing handles auth logic */}
                   <Route path="/*" element={<Landing />} />
                 </Routes>
-                <Onboarding />
+                {!isPublicHome && <Onboarding />}
               </AppLayout>
             </AppProviders>
           }
