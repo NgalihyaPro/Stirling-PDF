@@ -1,5 +1,6 @@
 .legal-page {
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
   background: #f7f8fb;
   color: #141821;
   font-family:
