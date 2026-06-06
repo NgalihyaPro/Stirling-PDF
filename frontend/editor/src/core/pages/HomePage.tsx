@@ -4,11 +4,10 @@ import { useToolWorkflow } from "@app/contexts/ToolWorkflowContext";
 import { Group } from "@mantine/core";
 import { useSidebarContext } from "@app/contexts/SidebarContext";
 import { useDocumentMeta } from "@app/hooks/useDocumentMeta";
-import { useBaseUrl } from "@app/hooks/useBaseUrl";
 import { useIsMobile } from "@app/hooks/useIsMobile";
-import { useAppConfig } from "@app/contexts/AppConfigContext";
 import { LogoIcon } from "@app/components/shared/LogoIcon";
 import { Wordmark } from "@app/components/shared/Wordmark";
+import { getSeoMetadata } from "@app/components/seo/SeoManager";
 import { useFileContext } from "@app/contexts/file/fileHooks";
 import {
   useNavigationState,
@@ -82,7 +81,6 @@ export default function HomePage() {
   } = useToolWorkflow();
 
   const navigate = useNavigate();
-  const { config } = useAppConfig();
   const isMobile = useIsMobile();
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const [activeMobileView, setActiveMobileView] = useState<MobileView>("tools");
@@ -274,29 +272,15 @@ export default function HomePage() {
     }
   }, [isMobile, activeMobileView, selectedTool, setLeftPanelView]);
 
-  const baseUrl = useBaseUrl();
-
   // Update document meta when tool changes
-  const appName = config?.appNameNavbar || "Ngalihya PDF";
+  const seoMeta = getSeoMetadata(location.pathname);
   useDocumentMeta({
-    title: selectedTool ? `${selectedTool.name} - ${appName}` : appName,
-    description:
-      selectedTool?.description ||
-      t(
-        "app.description",
-        "The Free Adobe Acrobat alternative (10M+ Downloads)",
-      ),
-    ogTitle: selectedTool ? `${selectedTool.name} - ${appName}` : appName,
-    ogDescription:
-      selectedTool?.description ||
-      t(
-        "app.description",
-        "The Free Adobe Acrobat alternative (10M+ Downloads)",
-      ),
-    ogImage: selectedToolKey
-      ? `${baseUrl}/og_images/${selectedToolKey}.png`
-      : `${baseUrl}/og_images/home.png`,
-    ogUrl: selectedTool ? `${baseUrl}${window.location.pathname}` : baseUrl,
+    title: seoMeta.title,
+    description: seoMeta.description,
+    ogTitle: seoMeta.title,
+    ogDescription: seoMeta.description,
+    ogImage: "https://ngalihyapdf.com/modern-logo/logo512.png",
+    ogUrl: `https://ngalihyapdf.com${location.pathname === "/" ? "" : location.pathname}`,
   });
 
   // Note: File selection limits are now handled directly by individual tools

@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
 import { AppProviders } from "@app/components/AppProviders";
 import { AppLayout } from "@app/components/AppLayout";
+import SeoManager from "@app/components/seo/SeoManager";
 import { LoadingFallback } from "@app/components/shared/LoadingFallback";
 import { PreferencesProvider } from "@app/contexts/PreferencesContext";
 import { RainbowThemeProvider } from "@app/components/shared/RainbowThemeProvider";
@@ -44,6 +45,7 @@ function ParticipantViewPage() {
 export default function App() {
   return (
     <Suspense fallback={<LoadingFallback />}>
+      <SeoManager />
       <Routes>
         {/* Mobile scanner route - no backend needed, pure P2P WebRTC */}
         <Route

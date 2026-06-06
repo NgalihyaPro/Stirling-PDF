@@ -1,3 +1,7 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /api/
+Disallow: /swagger-ui
+Disallow: /v1/api-docs
+
+Sitemap: https://ngalihyapdf.com/sitemap.xml

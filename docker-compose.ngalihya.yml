@@ -19,10 +19,10 @@ services:
       - ./stirling/ngalihya/storage:/storage:rw
     environment:
       DISABLE_ADDITIONAL_FEATURES: "false"
-      SECURITY_ENABLELOGIN: "true"
-      SECURITY_INITIALLOGIN_ENABLED: "true"
+      SECURITY_ENABLELOGIN: "${NGALIHIYA_ENABLE_LOGIN:-false}"
+      SECURITY_INITIALLOGIN_ENABLED: "${NGALIHIYA_ENABLE_LOGIN:-false}"
       SECURITY_INITIALLOGIN_USERNAME: "${NGALIHIYA_ADMIN_USER:-admin}"
-      SECURITY_INITIALLOGIN_PASSWORD: "${NGALIHIYA_ADMIN_PASSWORD:?Set NGALIHIYA_ADMIN_PASSWORD before starting the deployment}"
+      SECURITY_INITIALLOGIN_PASSWORD: "${NGALIHIYA_ADMIN_PASSWORD:-change-this-before-enabling-login}"
       PROCESS_EXECUTOR_AUTO_UNO_SERVER: "true"
       PROCESS_EXECUTOR_SESSION_LIMIT_LIBRE_OFFICE_SESSION_LIMIT: "1"
       PUID: "${NGALIHIYA_PUID:-1000}"
@@ -30,12 +30,12 @@ services:
       UMASK: "022"
       SYSTEM_DEFAULTLOCALE: "en-US"
       SYSTEM_MAXFILESIZE: "${NGALIHIYA_MAX_FILE_SIZE_MB:-100}"
-      SYSTEM_GOOGLEVISIBILITY: "false"
+      SYSTEM_GOOGLEVISIBILITY: "true"
       SYSTEM_ENABLEURLTOPDF: "false"
       SYSTEM_SHOWUPDATE: "false"
       UI_APPNAME: "Ngalihya PDF"
       UI_APPNAMENAVBAR: "Ngalihya PDF"
-      UI_HOMEDESCRIPTION: "Ngalihya PDF tools"
+      UI_HOMEDESCRIPTION: "Free online PDF tools to merge, compress, convert, edit, OCR, sign, watermark, and protect documents."
       METRICS_ENABLED: "false"
       SHOW_SURVEY: "false"
     restart: unless-stopped

@@ -4,18 +4,24 @@ Use `docker-compose.ngalihya.yml` for a first production deployment.
 
 ## Start
 
-Set a real admin password before starting the app:
+Start the public SEO-friendly app:
 
 ```bash
-export NGALIHIYA_ADMIN_PASSWORD='replace-with-a-strong-password'
 docker compose -f docker-compose.ngalihya.yml up -d --build
 ```
 
 On Windows PowerShell:
 
 ```powershell
-$env:NGALIHIYA_ADMIN_PASSWORD = 'replace-with-a-strong-password'
 docker compose -f docker-compose.ngalihya.yml up -d --build
+```
+
+The default compose file keeps the main tools public so Google can crawl and index them. Enable login later only when you want private accounts and stored user data:
+
+```bash
+export NGALIHIYA_ENABLE_LOGIN=true
+export NGALIHIYA_ADMIN_PASSWORD='replace-with-a-strong-password'
+docker compose -f docker-compose.ngalihya.yml up -d
 ```
 
 The app listens on port `8080` by default. To use another host port:
@@ -41,11 +47,23 @@ These folders are ignored by Git. Keep backups of `config` and `storage` if user
 
 The deployment compose file:
 
-- enables login with `SECURITY_ENABLELOGIN=true`
-- creates an initial admin user on first startup
+- keeps login disabled by default so public tool pages can be indexed
+- creates an initial admin user when `NGALIHIYA_ENABLE_LOGIN=true`
 - keeps uploaded/processed files out of Git
-- disables survey, metrics, update display, public Google visibility, and URL-to-PDF
+- disables survey, metrics, update display, and URL-to-PDF
+- enables public Google visibility and serves `/robots.txt` plus `/sitemap.xml`
 - sets the visible app name to `Ngalihya PDF`
+
+## SEO
+
+After deployment, check:
+
+```text
+https://ngalihyapdf.com/robots.txt
+https://ngalihyapdf.com/sitemap.xml
+```
+
+Submit `https://ngalihyapdf.com/sitemap.xml` in Google Search Console after DNS and HTTPS are working.
 
 ## Nginx
 
