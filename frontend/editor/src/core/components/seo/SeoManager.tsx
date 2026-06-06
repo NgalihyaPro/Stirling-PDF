@@ -6,28 +6,28 @@ const SITE_URL = "https://ngalihyapdf.com";
 const SITE_NAME = "Ngalihya PDF";
 const DEFAULT_TITLE = "Ngalihya PDF - Free Online PDF Tools";
 const DEFAULT_DESCRIPTION =
-  "Use Ngalihya PDF to merge, compress, convert, edit, OCR, sign, watermark, and protect PDF files online.";
+  "Use Ngalihya PDF to merge, compress, convert, edit, OCR, sign, watermark, and protect PDF files online with practical guides for everyday document work.";
 
 const TOOL_METADATA: Record<string, { title: string; description: string }> = {
   merge: {
     title: "Merge PDF Online - Ngalihya PDF",
     description:
-      "Combine multiple PDF files into one document quickly with Ngalihya PDF.",
+      "Combine multiple PDF files into one organized document online with Ngalihya PDF. Arrange documents, merge pages, and download a clean final PDF.",
   },
   compress: {
     title: "Compress PDF Online - Ngalihya PDF",
     description:
-      "Reduce PDF file size online while keeping your documents clear and easy to share.",
+      "Reduce PDF file size online with Ngalihya PDF so documents are easier to email, upload, and share while keeping text readable.",
   },
   convert: {
     title: "Convert PDF Online - Ngalihya PDF",
     description:
-      "Convert PDF, Word, images, HTML, Markdown, and other files with Ngalihya PDF.",
+      "Convert PDF, Word, images, HTML, Markdown, and other file formats online with Ngalihya PDF for practical document workflows.",
   },
   ocr: {
     title: "OCR PDF Online - Ngalihya PDF",
     description:
-      "Recognize text in scanned PDFs and images using Ngalihya PDF OCR tools.",
+      "Use Ngalihya PDF OCR tools to recognize text in scanned PDFs and image-based documents so files become easier to search and review.",
   },
   redact: {
     title: "Redact PDF Online - Ngalihya PDF",
@@ -67,7 +67,7 @@ const TOOL_METADATA: Record<string, { title: string; description: string }> = {
   addPassword: {
     title: "Password Protect PDF - Ngalihya PDF",
     description:
-      "Add password protection and permissions to PDF documents online.",
+      "Add password protection and document permissions to PDF files online with Ngalihya PDF before sharing sensitive documents.",
   },
   removePassword: {
     title: "Remove PDF Password - Ngalihya PDF",
@@ -143,6 +143,10 @@ function upsertJsonLd(id: string, data: unknown) {
   element.textContent = JSON.stringify(data);
 }
 
+function removeJsonLd(id: string) {
+  document.head.querySelector<HTMLScriptElement>(`script#${id}`)?.remove();
+}
+
 export function getSeoMetadata(pathname: string) {
   const cleanPath = pathname.replace(/\/+$/, "") || "/";
   const direct = PATH_METADATA[cleanPath];
@@ -216,7 +220,7 @@ export default function SeoManager() {
 
     upsertLink("canonical", canonicalUrl);
 
-    upsertJsonLd("ngalihya-pdf-structured-data", {
+    const baseStructuredData = {
       "@context": "https://schema.org",
       "@type": "WebApplication",
       name: SITE_NAME,
@@ -229,7 +233,58 @@ export default function SeoManager() {
         price: "0",
         priceCurrency: "USD",
       },
-    });
+    };
+
+    upsertJsonLd("ngalihya-pdf-structured-data", baseStructuredData);
+
+    if (cleanPath === "/") {
+      upsertJsonLd("ngalihya-pdf-organization-data", {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: SITE_NAME,
+        url: SITE_URL,
+        logo: `${SITE_URL}/modern-logo/logo512.png`,
+        contactPoint: {
+          "@type": "ContactPoint",
+          email: "support@ngalihyapdf.com",
+          contactType: "customer support",
+        },
+      });
+
+      upsertJsonLd("ngalihya-pdf-faq-data", {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "Is Ngalihya PDF free to use?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. Ngalihya PDF provides free online PDF tools for common document tasks such as merging, compressing, converting, editing, OCR, signing, and watermarking.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Can I convert PDF to Word online?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. Use the PDF to Word tool to convert PDF files into editable Word documents from your browser.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Does Ngalihya PDF support scanned documents?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. The OCR PDF tool can recognize text from scanned PDFs and image-based documents.",
+            },
+          },
+        ],
+      });
+    } else {
+      removeJsonLd("ngalihya-pdf-organization-data");
+      removeJsonLd("ngalihya-pdf-faq-data");
+    }
   }, [location.pathname]);
 
   return null;

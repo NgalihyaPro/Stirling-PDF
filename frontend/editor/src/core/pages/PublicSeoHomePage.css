@@ -106,7 +106,7 @@ body.public-home-page #root {
 .public-home h1 {
   margin: 0;
   max-width: 52rem;
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: 4.5rem;
   line-height: 1.04;
 }
 
@@ -326,6 +326,10 @@ body.public-home-page #root {
   margin-top: 2rem;
 }
 
+.public-home__guide-grid--wide {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .public-home__footer {
   display: grid;
   grid-template-columns: minmax(18rem, 1.4fr) repeat(3, minmax(9rem, 1fr));
@@ -396,16 +400,21 @@ body.public-home-page #root {
 
   .public-home__links {
     order: 3;
+    flex: 0 0 100%;
+    flex-wrap: wrap;
     justify-content: flex-start;
     gap: 1rem;
-    overflow-x: auto;
+    overflow-x: visible;
     width: 100%;
-    padding-bottom: 0.2rem;
   }
 
   .public-home__hero {
     grid-template-columns: 1fr;
     padding-top: 3rem;
+  }
+
+  .public-home h1 {
+    font-size: 3.4rem;
   }
 
   .public-home__tool-grid,

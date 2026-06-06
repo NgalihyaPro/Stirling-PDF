@@ -75,8 +75,26 @@ export function PrivacyPolicyPage() {
       <h2>Cookies</h2>
       <p>
         We may use essential cookies or similar storage to keep you signed in,
-        remember preferences, and protect the service. If analytics are enabled
-        in the future, this policy should be updated to describe those tools.
+        remember preferences, protect the service, and support document
+        processing workflows.
+      </p>
+
+      <h2>Analytics And Advertising</h2>
+      <p>
+        If analytics or advertising services are enabled, we and our service
+        providers may use cookies, web beacons, IP addresses, device
+        identifiers, browser information, and similar technologies to measure
+        traffic, prevent abuse, improve the service, and show or measure ads
+        where permitted by law.
+      </p>
+
+      <h2>Google Advertising</h2>
+      <p>
+        If Google ads are enabled, Google and its partners may use cookies and
+        other identifiers to serve ads, personalize ads where allowed, limit ad
+        repetition, and measure ad performance. Users can manage ad
+        personalization through Google advertising settings and browser privacy
+        controls.
       </p>
 
       <h2>Sharing Information</h2>

@@ -107,6 +107,16 @@ const faqs = [
     answer:
       "Yes. The OCR PDF tool can recognize text from scanned PDFs and image-based documents.",
   },
+  {
+    question: "Where should I start if I am new to PDF tools?",
+    answer:
+      "Start with the task you need most. Use Merge PDF to combine files, Compress PDF to make a document smaller, PDF to Word to create an editable document, or OCR PDF when a scanned file needs searchable text.",
+  },
+  {
+    question: "Should I create an account before using the tools?",
+    answer:
+      "You can use public tools first. Accounts can be enabled later when private file storage, saved workspaces, or user history become part of the service.",
+  },
 ];
 
 const guideCards = [
@@ -125,6 +135,33 @@ const guideCards = [
   {
     title: "Choosing the right PDF tool",
     body: "Use merge for combining files, split for extracting pages, compress for smaller files, convert for editable formats, and sign when a document needs approval.",
+  },
+];
+
+const workflowGuides = [
+  {
+    title: "Merge PDF files without losing order",
+    body: "Before merging documents, rename files or arrange them in the order you want readers to see them. Put cover pages, forms, attachments, and signature pages in a logical sequence. After merging, open the final PDF and review the first page, last page, page numbers, and any form fields before sharing it.",
+  },
+  {
+    title: "Compress PDFs for email and uploads",
+    body: "Use compression when a file is too large for email, website forms, school portals, or business systems. For documents with many images, start with a moderate compression setting so text remains readable. If the file contains contracts, certificates, or official records, check the output carefully before sending it.",
+  },
+  {
+    title: "Convert PDF to Word for editing",
+    body: "PDF to Word is useful when you need to update text, reuse a document layout, or prepare a draft for review. Conversion quality depends on the original PDF. Clean digital PDFs usually convert better than scanned pages, while scanned files may need OCR before the text becomes editable.",
+  },
+  {
+    title: "Use OCR for scanned files",
+    body: "OCR helps turn scanned pages and image-based PDFs into searchable text. It is useful for receipts, letters, forms, reports, and archived documents. For better results, upload clear scans, choose the correct language when available, and review names, numbers, and dates after processing.",
+  },
+  {
+    title: "Protect and watermark sensitive files",
+    body: "When sharing private or business documents, consider adding passwords, permissions, watermarks, or signatures depending on the situation. A watermark can show ownership or status, while password protection helps limit casual access. Always share passwords through a separate secure channel.",
+  },
+  {
+    title: "Keep document processing responsible",
+    body: "Only upload files you own or are authorized to handle. Avoid processing identity documents, passwords, medical files, financial records, or confidential business files unless you understand the privacy risk and trust the deployment. Download finished files and remove anything you no longer need.",
   },
 ];
 
@@ -272,6 +309,29 @@ export default function PublicSeoHomePage() {
         </div>
         <div className="public-home__guide-grid">
           {guideCards.map((guide) => (
+            <article key={guide.title} className="public-home__guide">
+              <h3>{guide.title}</h3>
+              <p>{guide.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="public-home__section"
+        aria-labelledby="workflow-guides-title"
+      >
+        <div className="public-home__section-heading">
+          <p className="public-home__eyebrow">Document workflow guides</p>
+          <h2 id="workflow-guides-title">Learn how to handle PDF tasks correctly</h2>
+          <p>
+            Ngalihya PDF is more than a list of tools. These practical notes
+            help users understand when to convert, compress, merge, protect, or
+            scan documents before sending them to someone else.
+          </p>
+        </div>
+        <div className="public-home__guide-grid public-home__guide-grid--wide">
+          {workflowGuides.map((guide) => (
             <article key={guide.title} className="public-home__guide">
               <h3>{guide.title}</h3>
               <p>{guide.body}</p>
