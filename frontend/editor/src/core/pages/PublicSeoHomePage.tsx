@@ -1,4 +1,4 @@
-import { type MouseEvent, useEffect } from "react";
+import { type MouseEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import DescriptionIcon from "@mui/icons-material/Description";
@@ -6,7 +6,13 @@ import LockIcon from "@mui/icons-material/Lock";
 import SecurityIcon from "@mui/icons-material/Security";
 import BoltIcon from "@mui/icons-material/Bolt";
 import { NgalihyaBrand } from "@app/components/shared/NgalihyaBrand";
+import { BASE_PATH } from "@app/constants/app";
 import "@app/pages/PublicSeoHomePage.css";
+
+interface PublicLoginState {
+  enabled: boolean;
+  label: string;
+}
 
 const featuredTools = [
   {
@@ -166,12 +172,44 @@ const workflowGuides = [
 ];
 
 export default function PublicSeoHomePage() {
+  const [loginState, setLoginState] = useState<PublicLoginState | null>(null);
+
   useEffect(() => {
     document.documentElement.classList.add("public-home-page");
     document.body.classList.add("public-home-page");
     return () => {
       document.documentElement.classList.remove("public-home-page");
       document.body.classList.remove("public-home-page");
+    };
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+
+    const loadLoginState = async () => {
+      try {
+        const response = await fetch(
+          `${BASE_PATH || ""}/api/v1/proprietary/ui-data/login`,
+          { cache: "no-store" },
+        );
+        if (!response.ok) return;
+
+        const data = await response.json();
+        if (!active || data?.enableLogin !== true) return;
+
+        const label =
+          data.loginMethod === "oauth2" ? "Continue with Google" : "Login";
+
+        setLoginState({ enabled: true, label });
+      } catch {
+        // Keep the public homepage usable even when login configuration is unavailable.
+      }
+    };
+
+    void loadLoginState();
+
+    return () => {
+      active = false;
     };
   }, []);
 
@@ -209,9 +247,11 @@ export default function PublicSeoHomePage() {
             Contact
           </a>
         </nav>
-        <Link to="/login" className="public-home__login">
-          Login
-        </Link>
+        {loginState?.enabled && (
+          <Link to="/login" className="public-home__login">
+            {loginState.label}
+          </Link>
+        )}
       </header>
 
       <section className="public-home__hero">
