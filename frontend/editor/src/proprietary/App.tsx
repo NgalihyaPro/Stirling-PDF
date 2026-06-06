@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Routes, Route, useLocation, useParams } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 import { AppProviders } from "@app/components/AppProviders";
 import { AppLayout } from "@app/components/AppLayout";
 import SeoManager from "@app/components/seo/SeoManager";
@@ -44,13 +44,19 @@ function ParticipantViewPage() {
 }
 
 export default function App() {
-  const location = useLocation();
-  const isPublicHome = location.pathname === "/";
-
   return (
     <Suspense fallback={<LoadingFallback />}>
       <SeoManager />
       <Routes>
+        <Route
+          path="/"
+          element={
+            <AppProviders>
+              <PublicSeoHomePage />
+            </AppProviders>
+          }
+        />
+
         {/* Mobile scanner route - no backend needed, pure P2P WebRTC */}
         <Route
           path="/mobile-scanner"
@@ -81,7 +87,6 @@ export default function App() {
             <AppProviders>
               <AppLayout>
                 <Routes>
-                  <Route path="/" element={<PublicSeoHomePage />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/signup" element={<Signup />} />
                   <Route path="/auth/callback" element={<AuthCallback />} />
@@ -90,7 +95,7 @@ export default function App() {
                   {/* Main app routes - Landing handles auth logic */}
                   <Route path="/*" element={<Landing />} />
                 </Routes>
-                {!isPublicHome && <Onboarding />}
+                <Onboarding />
               </AppLayout>
             </AppProviders>
           }

@@ -1,6 +1,14 @@
+.public-home-page,
+.public-home-page #root {
+  height: auto !important;
+  min-height: 100vh;
+  overflow-y: auto !important;
+}
+
 .public-home {
-  min-height: 100%;
-  overflow-y: auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
   background:
     radial-gradient(circle at 12% 8%, rgba(239, 31, 45, 0.12), transparent 28rem),
     linear-gradient(180deg, #ffffff 0%, #f7f8fb 58%, #ffffff 100%);
@@ -17,7 +25,7 @@
   gap: 2rem;
   border-bottom: 1px solid #e6e8ee;
   background: rgba(255, 255, 255, 0.94);
-  padding: 0 2.5rem;
+  padding: 0 3rem;
   backdrop-filter: blur(14px);
 }
 
@@ -29,13 +37,21 @@
 }
 
 .public-home__brand-icon {
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 3.3rem;
+  height: 3.3rem;
+  flex: 0 0 auto;
 }
 
-.public-home__brand-wordmark {
-  height: 1.75rem;
-  max-width: 11rem;
+.public-home__brand-text {
+  color: #141820;
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.public-home__brand-text strong {
+  color: #ef1f2d;
 }
 
 .public-home__links {
@@ -43,7 +59,7 @@
   flex: 1;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 2.4rem;
 }
 
 .public-home__links a,
@@ -213,6 +229,7 @@
 
 .public-home__section,
 .public-home__band {
+  scroll-margin-top: 6rem;
   width: min(76rem, calc(100% - 3rem));
   margin: 0 auto;
   padding: 4rem 0;
@@ -308,13 +325,58 @@
 }
 
 .public-home__footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem 1.4rem;
+  display: grid;
+  grid-template-columns: minmax(18rem, 1.4fr) repeat(3, minmax(9rem, 1fr));
+  gap: 2rem;
   border-top: 1px solid #e6e8ee;
-  padding: 1.5rem;
+  background: #10131a;
+  padding: 3rem max(1.5rem, calc((100% - 76rem) / 2)) 1.5rem;
   color: #5c6472;
+}
+
+.public-home__footer-brand p,
+.public-home__contact-line {
+  max-width: 28rem;
+  color: #c4c9d4;
+  line-height: 1.6;
+}
+
+.public-home__brand--footer {
+  justify-content: flex-start;
+}
+
+.public-home__brand--footer .public-home__brand-text {
+  color: #ffffff;
+}
+
+.public-home__footer-column {
+  display: grid;
+  align-content: start;
+  gap: 0.7rem;
+}
+
+.public-home__footer-column h2 {
+  margin: 0 0 0.4rem;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.public-home__footer a {
+  color: #c4c9d4;
+}
+
+.public-home__footer a:hover {
+  color: #ffffff;
+}
+
+.public-home__footer-bottom {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 1.4rem;
+  color: #9aa3b2;
 }
 
 .public-home__footer span {
@@ -323,13 +385,15 @@
 
 @media (max-width: 68rem) {
   .public-home__nav {
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 1rem;
     padding: 1rem 1.5rem;
   }
 
   .public-home__links {
+    order: 3;
     justify-content: flex-start;
     gap: 1rem;
     overflow-x: auto;
@@ -346,12 +410,30 @@
   .public-home__benefit-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .public-home__footer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .public-home__footer-brand,
+  .public-home__footer-bottom {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 42rem) {
   .public-home__hero,
   .public-home__section {
     width: min(100% - 1.25rem, 76rem);
+  }
+
+  .public-home__brand-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .public-home__brand-text {
+    font-size: 1.1rem;
   }
 
   .public-home h1 {
@@ -362,6 +444,14 @@
   .public-home__benefit-grid,
   .public-home__faq-list {
     grid-template-columns: 1fr;
+  }
+
+  .public-home__footer {
+    grid-template-columns: 1fr;
+  }
+
+  .public-home__footer-bottom {
+    flex-direction: column;
   }
 
   .public-home__hero-panel {

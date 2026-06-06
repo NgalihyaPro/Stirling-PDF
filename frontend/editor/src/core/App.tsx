@@ -52,9 +52,7 @@ export default function App() {
           path="/"
           element={
             <AppProviders>
-              <AppLayout>
-                <PublicSeoHomePage />
-              </AppLayout>
+              <PublicSeoHomePage />
             </AppProviders>
           }
         />

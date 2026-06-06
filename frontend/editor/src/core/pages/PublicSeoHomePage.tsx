@@ -1,3 +1,4 @@
+import { type MouseEvent, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import DescriptionIcon from "@mui/icons-material/Description";
@@ -5,7 +6,6 @@ import LockIcon from "@mui/icons-material/Lock";
 import SecurityIcon from "@mui/icons-material/Security";
 import BoltIcon from "@mui/icons-material/Bolt";
 import { LogoIcon } from "@app/components/shared/LogoIcon";
-import { Wordmark } from "@app/components/shared/Wordmark";
 import "@app/pages/PublicSeoHomePage.css";
 
 const featuredTools = [
@@ -110,18 +110,47 @@ const faqs = [
 ];
 
 export default function PublicSeoHomePage() {
+  useEffect(() => {
+    document.body.classList.add("public-home-page");
+    return () => document.body.classList.remove("public-home-page");
+  }, []);
+
+  const scrollToSection = (
+    event: MouseEvent<HTMLAnchorElement>,
+    sectionId: string,
+  ) => {
+    event.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+    window.history.pushState(null, "", `#${sectionId}`);
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <main className="public-home">
       <header className="public-home__nav">
         <Link to="/" className="public-home__brand" aria-label="Ngalihya PDF home">
           <LogoIcon className="public-home__brand-icon" />
-          <Wordmark className="public-home__brand-wordmark" alt="Ngalihya PDF" />
+          <span className="public-home__brand-text">
+            Ngalihya <strong>PDF</strong>
+          </span>
         </Link>
         <nav className="public-home__links" aria-label="Primary tools">
-          <Link to="/merge">Merge PDF</Link>
-          <Link to="/compress">Compress PDF</Link>
-          <Link to="/pdf-to-word">PDF to Word</Link>
-          <Link to="/ocr">OCR PDF</Link>
+          <a href="#tools" onClick={(event) => scrollToSection(event, "tools")}>
+            Tools
+          </a>
+          <a href="#why" onClick={(event) => scrollToSection(event, "why")}>
+            Why Us
+          </a>
+          <a href="#faq" onClick={(event) => scrollToSection(event, "faq")}>
+            FAQ
+          </a>
+          <a
+            href="#contact"
+            onClick={(event) => scrollToSection(event, "contact")}
+          >
+            Contact
+          </a>
         </nav>
         <Link to="/login" className="public-home__login">
           Login
@@ -163,7 +192,11 @@ export default function PublicSeoHomePage() {
         </div>
       </section>
 
-      <section className="public-home__section" aria-labelledby="tools-title">
+      <section
+        id="tools"
+        className="public-home__section"
+        aria-labelledby="tools-title"
+      >
         <div className="public-home__section-heading">
           <p className="public-home__eyebrow">Popular tools</p>
           <h2 id="tools-title">Work with PDFs online</h2>
@@ -186,7 +219,7 @@ export default function PublicSeoHomePage() {
         </div>
       </section>
 
-      <section className="public-home__band" aria-labelledby="why-title">
+      <section id="why" className="public-home__band" aria-labelledby="why-title">
         <div className="public-home__section-heading">
           <p className="public-home__eyebrow">Why Ngalihya PDF</p>
           <h2 id="why-title">A practical PDF workspace for everyday documents</h2>
@@ -205,7 +238,11 @@ export default function PublicSeoHomePage() {
         </div>
       </section>
 
-      <section className="public-home__section" aria-labelledby="faq-title">
+      <section
+        id="faq"
+        className="public-home__section"
+        aria-labelledby="faq-title"
+      >
         <div className="public-home__section-heading">
           <p className="public-home__eyebrow">FAQ</p>
           <h2 id="faq-title">Ngalihya PDF questions</h2>
@@ -220,11 +257,55 @@ export default function PublicSeoHomePage() {
         </div>
       </section>
 
-      <footer className="public-home__footer">
-        <span>Ngalihya PDF</span>
-        <Link to="/privacy">Privacy Policy</Link>
-        <Link to="/terms">Terms and Conditions</Link>
-        <Link to="/accessibility">Accessibility</Link>
+      <footer id="contact" className="public-home__footer">
+        <div className="public-home__footer-brand">
+          <div className="public-home__brand public-home__brand--footer">
+            <LogoIcon className="public-home__brand-icon" />
+            <span className="public-home__brand-text">
+              Ngalihya <strong>PDF</strong>
+            </span>
+          </div>
+          <p>
+            Free online PDF tools for converting, compressing, editing,
+            organizing, signing, and protecting documents.
+          </p>
+          <p className="public-home__contact-line">
+            Contact: <a href="mailto:support@ngalihyapdf.com">support@ngalihyapdf.com</a>
+          </p>
+        </div>
+
+        <div className="public-home__footer-column">
+          <h2>Popular tools</h2>
+          <Link to="/pdf-to-word">PDF to Word</Link>
+          <Link to="/merge">Merge PDF</Link>
+          <Link to="/compress">Compress PDF</Link>
+          <Link to="/ocr">OCR PDF</Link>
+        </div>
+
+        <div className="public-home__footer-column">
+          <h2>More tools</h2>
+          <Link to="/pdf-text-editor">Edit PDF</Link>
+          <Link to="/sign">Sign PDF</Link>
+          <Link to="/add-watermark">Watermark PDF</Link>
+          <Link to="/add-password">Protect PDF</Link>
+        </div>
+
+        <div className="public-home__footer-column">
+          <h2>Company</h2>
+          <a href="#why" onClick={(event) => scrollToSection(event, "why")}>
+            About Ngalihya PDF
+          </a>
+          <a href="#faq" onClick={(event) => scrollToSection(event, "faq")}>
+            FAQ
+          </a>
+          <Link to="/privacy">Privacy Policy</Link>
+          <Link to="/terms">Terms and Conditions</Link>
+        </div>
+
+        <div className="public-home__footer-bottom">
+          <span>Copyright 2026 Ngalihya PDF. All rights reserved.</span>
+          <span>ngalihyapdf.com</span>
+        </div>
       </footer>
     </main>
   );
