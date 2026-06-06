@@ -7,6 +7,7 @@ import { RainbowThemeProvider } from "@app/components/shared/RainbowThemeProvide
 import { PreferencesProvider } from "@app/contexts/PreferencesContext";
 import HomePage from "@app/pages/HomePage";
 import MobileScannerPage from "@app/pages/MobileScannerPage";
+import { PrivacyPolicyPage, TermsPage } from "@app/pages/LegalPage";
 import Onboarding from "@app/components/onboarding/Onboarding";
 
 // Import global styles
@@ -39,6 +40,9 @@ export default function App() {
             </MobileScannerProviders>
           }
         />
+
+        <Route path="/privacy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
 
         {/* All other routes need AppProviders for backend integration */}
         <Route

@@ -30,8 +30,8 @@ export default function Footer({
   void impressum;
 
   // Default Ngalihya PDF public legal pages.
-  const defaultTermsUrl = "https://ngalihyapdf.com/terms";
-  const defaultPrivacyUrl = "https://ngalihyapdf.com/privacy";
+  const defaultTermsUrl = "/terms";
+  const defaultPrivacyUrl = "/privacy";
 
   const finalTermsUrl = defaultTermsUrl;
   const finalPrivacyUrl = defaultPrivacyUrl;
