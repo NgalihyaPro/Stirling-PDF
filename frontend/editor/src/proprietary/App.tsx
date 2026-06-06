@@ -15,7 +15,14 @@ import InviteAccept from "@app/routes/InviteAccept";
 import ShareLinkPage from "@app/routes/ShareLinkPage";
 import ParticipantView from "@app/components/workflow/ParticipantView";
 import MobileScannerPage from "@app/pages/MobileScannerPage";
-import { PrivacyPolicyPage, TermsPage } from "@app/pages/LegalPage";
+import {
+  AboutPage,
+  AccessibilityPage,
+  ContactPage,
+  CookiePolicyPage,
+  PrivacyPolicyPage,
+  TermsPage,
+} from "@app/pages/LegalPage";
 import Onboarding from "@app/components/onboarding/Onboarding";
 
 // Import global styles
@@ -69,6 +76,10 @@ export default function App() {
 
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/terms" element={<TermsPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/cookie-policy" element={<CookiePolicyPage />} />
+        <Route path="/accessibility" element={<AccessibilityPage />} />
 
         {/* Participant signing — public, token-gated, no auth required */}
         <Route

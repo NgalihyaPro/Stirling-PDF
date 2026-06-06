@@ -9,7 +9,14 @@ import { PreferencesProvider } from "@app/contexts/PreferencesContext";
 import HomePage from "@app/pages/HomePage";
 import PublicSeoHomePage from "@app/pages/PublicSeoHomePage";
 import MobileScannerPage from "@app/pages/MobileScannerPage";
-import { PrivacyPolicyPage, TermsPage } from "@app/pages/LegalPage";
+import {
+  AboutPage,
+  AccessibilityPage,
+  ContactPage,
+  CookiePolicyPage,
+  PrivacyPolicyPage,
+  TermsPage,
+} from "@app/pages/LegalPage";
 import Onboarding from "@app/components/onboarding/Onboarding";
 
 // Import global styles
@@ -46,6 +53,10 @@ export default function App() {
 
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/terms" element={<TermsPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/cookie-policy" element={<CookiePolicyPage />} />
+        <Route path="/accessibility" element={<AccessibilityPage />} />
 
         {/* All other routes need AppProviders for backend integration */}
         <Route

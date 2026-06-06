@@ -91,6 +91,26 @@ const PATH_METADATA: Record<string, { title: string; description: string }> = {
     description:
       "Read the Ngalihya PDF Terms and Conditions for using the online PDF tools and document processing service.",
   },
+  "/about": {
+    title: "About Ngalihya PDF - Free Online PDF Tools",
+    description:
+      "Learn about Ngalihya PDF, an online workspace for converting, compressing, editing, organizing, signing, and protecting PDF documents.",
+  },
+  "/contact": {
+    title: "Contact Ngalihya PDF Support",
+    description:
+      "Contact Ngalihya PDF for support questions, privacy requests, account questions, and online PDF tool inquiries.",
+  },
+  "/cookie-policy": {
+    title: "Cookie Policy - Ngalihya PDF",
+    description:
+      "Read how Ngalihya PDF uses cookies, local storage, analytics, and advertising technologies.",
+  },
+  "/accessibility": {
+    title: "Accessibility - Ngalihya PDF",
+    description:
+      "Read the Ngalihya PDF accessibility statement and learn how to report accessibility issues.",
+  },
 };
 
 function upsertMeta(selector: string, attrs: Record<string, string>) {

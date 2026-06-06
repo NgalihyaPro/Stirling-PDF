@@ -194,3 +194,151 @@ export function TermsPage() {
     </LegalLayout>
   );
 }
+
+export function AboutPage() {
+  return (
+    <LegalLayout title="About Ngalihya PDF">
+      <p>
+        Ngalihya PDF is an online PDF workspace built to help people complete
+        everyday document tasks from a browser. The service focuses on practical
+        tools for converting, compressing, editing, organizing, signing,
+        protecting, and reading PDF files.
+      </p>
+
+      <h2>What We Provide</h2>
+      <p>
+        Our goal is to make common PDF work simple and accessible. Users can
+        open a tool, upload a document they are allowed to process, choose the
+        settings they need, and download the finished file.
+      </p>
+
+      <h2>Who Ngalihya PDF Is For</h2>
+      <p>
+        Ngalihya PDF is useful for students, office teams, small businesses,
+        freelancers, and anyone who needs to prepare documents for sharing,
+        printing, archiving, or submission.
+      </p>
+
+      <h2>Our Approach To Files</h2>
+      <p>
+        Uploaded files are handled only to provide the requested PDF operation.
+        If account storage is enabled in the future, users will be able to keep
+        files in their workspace. Until then, users should download completed
+        documents and avoid uploading files they are not authorized to process.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        For support, questions, or business inquiries, contact{" "}
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+      </p>
+    </LegalLayout>
+  );
+}
+
+export function ContactPage() {
+  return (
+    <LegalLayout title="Contact Ngalihya PDF">
+      <p>
+        Need help with Ngalihya PDF or want to report a problem with a tool?
+        Send us a clear message and include the tool name, browser, and a short
+        description of what happened.
+      </p>
+
+      <h2>Email Support</h2>
+      <p>
+        Contact us at{" "}
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. We use this
+        address for support questions, privacy requests, account questions, and
+        general inquiries.
+      </p>
+
+      <h2>Before Sending Files</h2>
+      <p>
+        Do not email sensitive documents unless we specifically request them for
+        support. When possible, describe the problem without sharing private
+        files, passwords, identification documents, or confidential business
+        information.
+      </p>
+
+      <h2>Response Time</h2>
+      <p>
+        We aim to respond as soon as possible, but response times can vary based
+        on request volume and the complexity of the issue.
+      </p>
+    </LegalLayout>
+  );
+}
+
+export function CookiePolicyPage() {
+  return (
+    <LegalLayout title="Cookie Policy">
+      <p>
+        This Cookie Policy explains how Ngalihya PDF may use cookies, local
+        storage, and similar technologies when you visit the website or use PDF
+        tools.
+      </p>
+
+      <h2>Essential Cookies And Storage</h2>
+      <p>
+        Essential cookies and browser storage may be used to keep the service
+        working, remember preferences, protect accounts, maintain sessions, and
+        support document processing workflows.
+      </p>
+
+      <h2>Analytics And Advertising Cookies</h2>
+      <p>
+        If analytics or advertising services are enabled, those providers may
+        use cookies, web beacons, IP addresses, device identifiers, and similar
+        technologies to measure traffic, prevent abuse, and personalize or
+        measure ads where permitted by law.
+      </p>
+
+      <h2>Google Advertising</h2>
+      <p>
+        If Google ads are enabled, Google and its partners may place and read
+        cookies or use web beacons and other identifiers to serve, measure, and
+        personalize ads. Users can manage ad personalization through their
+        Google advertising settings and browser privacy controls.
+      </p>
+
+      <h2>Your Choices</h2>
+      <p>
+        You can block or delete cookies in your browser settings. Some parts of
+        Ngalihya PDF may not work correctly if essential cookies or local storage
+        are disabled.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about cookies can be sent to{" "}
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+      </p>
+    </LegalLayout>
+  );
+}
+
+export function AccessibilityPage() {
+  return (
+    <LegalLayout title="Accessibility">
+      <p>
+        Ngalihya PDF aims to provide PDF tools that are usable by as many people
+        as possible. We continue to improve page structure, keyboard access,
+        readable contrast, labels, and responsive layouts.
+      </p>
+
+      <h2>Accessibility Goals</h2>
+      <p>
+        We work toward clear navigation, meaningful page headings, readable text,
+        keyboard-friendly controls, and layouts that adapt across screen sizes.
+      </p>
+
+      <h2>Feedback</h2>
+      <p>
+        If you find an accessibility problem, contact{" "}
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> and include the
+        page URL, device, browser, and a short description of the issue.
+      </p>
+    </LegalLayout>
+  );
+}

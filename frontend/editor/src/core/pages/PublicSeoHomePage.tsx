@@ -109,6 +109,25 @@ const faqs = [
   },
 ];
 
+const guideCards = [
+  {
+    title: "How to prepare a PDF before sharing",
+    body: "Compress large files, remove unnecessary pages, add protection when needed, and check that the document opens correctly before sending it to another person.",
+  },
+  {
+    title: "When to use OCR",
+    body: "Use OCR when a PDF is scanned or image-based and you need searchable or selectable text for copying, reviewing, or archiving.",
+  },
+  {
+    title: "Keeping PDF files private",
+    body: "Only upload documents you are authorized to process, remove sensitive metadata when needed, and download finished files to your own secure storage.",
+  },
+  {
+    title: "Choosing the right PDF tool",
+    body: "Use merge for combining files, split for extracting pages, compress for smaller files, convert for editable formats, and sign when a document needs approval.",
+  },
+];
+
 export default function PublicSeoHomePage() {
   useEffect(() => {
     document.documentElement.classList.add("public-home-page");
@@ -240,6 +259,28 @@ export default function PublicSeoHomePage() {
       </section>
 
       <section
+        className="public-home__section"
+        aria-labelledby="guides-title"
+      >
+        <div className="public-home__section-heading">
+          <p className="public-home__eyebrow">PDF guides</p>
+          <h2 id="guides-title">Helpful document tips before you upload</h2>
+          <p>
+            These short guides explain common PDF workflows so users can choose
+            the right tool and understand how to handle documents responsibly.
+          </p>
+        </div>
+        <div className="public-home__guide-grid">
+          {guideCards.map((guide) => (
+            <article key={guide.title} className="public-home__guide">
+              <h3>{guide.title}</h3>
+              <p>{guide.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
         id="faq"
         className="public-home__section"
         aria-labelledby="faq-title"
@@ -290,14 +331,15 @@ export default function PublicSeoHomePage() {
 
         <div className="public-home__footer-column">
           <h2>Company</h2>
-          <a href="#why" onClick={(event) => scrollToSection(event, "why")}>
-            About Ngalihya PDF
-          </a>
+          <Link to="/about">About Ngalihya PDF</Link>
+          <Link to="/contact">Contact</Link>
           <a href="#faq" onClick={(event) => scrollToSection(event, "faq")}>
             FAQ
           </a>
           <Link to="/privacy">Privacy Policy</Link>
           <Link to="/terms">Terms and Conditions</Link>
+          <Link to="/cookie-policy">Cookie Policy</Link>
+          <Link to="/accessibility">Accessibility</Link>
         </div>
 
         <div className="public-home__footer-bottom">

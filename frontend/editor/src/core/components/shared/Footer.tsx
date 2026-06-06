@@ -77,6 +77,22 @@ export default function Footer({
         >
           {t("legal.terms", "Terms and Conditions")}
         </a>
+        <a
+          className="footer-link px-3"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="/about"
+        >
+          {t("legal.about", "About")}
+        </a>
+        <a
+          className="footer-link px-3"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="/contact"
+        >
+          {t("legal.contact", "Contact")}
+        </a>
       </Flex>
     </div>
   );

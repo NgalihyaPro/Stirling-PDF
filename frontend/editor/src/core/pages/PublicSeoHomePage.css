@@ -251,7 +251,8 @@ body.public-home-page #root {
 
 .public-home__tool,
 .public-home__benefit,
-.public-home__faq {
+.public-home__faq,
+.public-home__guide {
   border: 1px solid #e0e4ec;
   border-radius: 0.5rem;
   background: #ffffff;
@@ -283,14 +284,16 @@ body.public-home-page #root {
 
 .public-home__tool h3,
 .public-home__benefit h3,
-.public-home__faq h3 {
+.public-home__faq h3,
+.public-home__guide h3 {
   margin: 0.85rem 0 0.5rem;
   font-size: 1.35rem;
 }
 
 .public-home__tool p,
 .public-home__benefit p,
-.public-home__faq p {
+.public-home__faq p,
+.public-home__guide p {
   color: #5c6472;
   line-height: 1.55;
 }
@@ -309,6 +312,13 @@ body.public-home-page #root {
 }
 
 .public-home__faq-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.public-home__guide-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
@@ -402,6 +412,10 @@ body.public-home-page #root {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .public-home__guide-grid {
+    grid-template-columns: 1fr;
+  }
+
   .public-home__footer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -429,7 +443,8 @@ body.public-home-page #root {
 
   .public-home__tool-grid,
   .public-home__benefit-grid,
-  .public-home__faq-list {
+  .public-home__faq-list,
+  .public-home__guide-grid {
     grid-template-columns: 1fr;
   }
 
